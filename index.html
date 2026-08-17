@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartFix.AI — Enterprise Intelligence Platform</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <div id="side">
+    <div class="brand">
+      <div class="blogo">SF</div>
+      <div class="brandtxt"><div class="bname">SmartFix.AI</div><div class="bsub">ENTERPRISE INTELLIGENCE</div></div>
+      <button class="sidetoggle" onclick="P.toggleSidebar()" title="Collapse menu">◀</button>
+    </div>
+    <div id="nav"></div>
+    <div class="uinfo">
+      <div class="uav">BS</div>
+      <div class="uinfotxt" style="flex:1"><div style="font-size:12px;font-weight:600">Bobby Sharon</div>
+      <div style="font-size:9.5px;color:var(--muted)">Global Administrator</div></div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="top">
+      <input class="tsearch" id="gsearch" placeholder="Search incidents, assets, workflows, people…">
+      <select id="langSel" class="tbtn" style="padding:6px 10px" onchange="P.setLang(this.value)">
+        <option value="en">🌐 English</option>
+        <option value="ar">🌐 العربية</option>
+        <option value="fr">🌐 Français</option>
+        <option value="es">🌐 Español</option>
+        <option value="zh">🌐 中文</option>
+      </select>
+      <div style="flex:1"></div>
+      <select id="orgSel" class="tbtn" style="padding:6px 10px">
+        <option>SmartFix Global — All Entities</option>
+        <option>UAE Operations</option><option>GCC Region</option><option>APAC Region</option>
+      </select>
+      <button class="tbtn" onclick="P.notify('3 alerts require attention')">🔔 <b id="alertN">3</b></button>
+      <button class="tbtn" onclick="P.chatPanel()" title="Team chat">💬</button>
+      <button class="tbtn" onclick="P.logout()" title="Sign out">⏻</button>
+      <button class="tbtn pri" onclick="P.openNew()">+ New</button>
+    </div>
+    <div id="view"></div>
+  </div>
+</div>
+
+<div id="login">
+  <div class="lbox">
+    <div class="llogo">SF</div>
+    <select id="langSelLogin" class="tbtn" style="position:absolute;top:16px;right:16px;padding:5px 9px;font-size:11px" onchange="P.setLang(this.value)">
+      <option value="en">🌐 English</option>
+      <option value="ar">🌐 العربية</option>
+      <option value="fr">🌐 Français</option>
+      <option value="es">🌐 Español</option>
+      <option value="zh">🌐 中文</option>
+    </select>
+    <div style="text-align:center;margin-bottom:5px"><b style="font-size:18px">SmartFix.AI</b></div>
+    <div id="tEipTag" style="text-align:center;font-size:11px;color:var(--muted);letter-spacing:1.3px;margin-bottom:20px">ENTERPRISE INTELLIGENCE PLATFORM</div>
+    <div class="lerr" id="lerr">Invalid credentials. Please try again.</div>
+    <div class="fld"><label id="lblCo">Company</label><input id="liCo" value="SmartFix Global"></div>
+    <div class="fld"><label id="lblEm">Email</label><input id="liEm" value="bobby.sharon@smartfix.global"></div>
+    <div class="fld"><label id="lblPw">Password</label><input id="liPw" type="password" value="demo1234"
+      onkeydown="if(event.key==='Enter')P.login()"></div>
+    <div class="lrow">
+      <label style="display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--ice)">
+        <div class="tog on" id="remTog" onclick="event.preventDefault();this.classList.toggle('on')"><i></i></div>
+        <span id="lblRemember">Remember me</span></label>
+      <span class="lnk" id="lblForgot" onclick="P.forgot()">Forgot password?</span>
+    </div>
+    <button class="btn pri" id="btnSignIn" style="width:100%;padding:11px" onclick="P.login()">Sign In</button>
+    <div style="text-align:center;margin-top:14px;font-size:10.5px;color:var(--muted)" id="lblTagline">
+      Unified enterprise intelligence, secured end to end</div>
+  </div>
+</div>
+
+<div id="tchat">
+  <div class="tch"><b style="font-size:13px">Team Chat</b>
+    <button class="btn sm" onclick="P.chatPanel()">✕</button></div>
+  <div class="tcu" id="tcUsers"></div>
+  <div class="tcm" id="tcMsgs"></div>
+  <div class="tci"><input id="tcIn" placeholder="Message…" onkeydown="if(event.key==='Enter')P.tcSend()">
+    <button class="btn pri" onclick="P.tcSend()">Send</button></div>
+</div>
+
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
